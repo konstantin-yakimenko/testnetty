@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} | %-20.20thread | %-5level | %msg - %logger{36} [%M:%L] %n"

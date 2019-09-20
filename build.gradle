@@ -1,0 +1,23 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.8.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.jakimenko'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compile("io.netty:netty-all:4.1.21.Final")
+	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+//	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.3'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
