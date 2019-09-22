@@ -3,20 +3,22 @@ package com.jakimenko.testnetty.domain;
 /**
  * @author konst
  */
-public class City {
-    private Long id;
+public class City extends Entity {
     private String title;
 
-    public City(Long id, String title) {
-        this.id = id;
+    public City(Integer id, String title) {
+        super(id);
         this.title = title;
     }
 
-    public Long getId() {
+    public City() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

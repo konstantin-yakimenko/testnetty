@@ -3,6 +3,7 @@ package com.jakimenko.testnetty.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jakimenko.testnetty.handler.IHttpHandler;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -13,8 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.function.Function;
 
 import static io.netty.buffer.Unpooled.wrappedBuffer;
 import static io.netty.handler.codec.http.HttpHeaderValues.TEXT_PLAIN;
@@ -43,13 +42,16 @@ public class HttpControllerHandler extends SimpleChannelInboundHandler<FullHttpR
         AsciiString mimeType = HttpHeaderValues.APPLICATION_JSON;
 
         try {
-            Function<FullHttpRequest, ?> handler = pathHandlerProvider.getHandler(request);
+            IHttpHandler handler = pathHandlerProvider.getHandler(request);
             if (handler == null) {
                 writeResponse(ctx, HttpResponseStatus.NOT_FOUND, TEXT_PLAIN, "Not found.");
                 return;
             }
 
-            Object response = handler.apply(request);
+            Object response = handler.handleRequest(request);
+            if (request.method().equals(HttpMethod.POST)) {
+                responseStatus = HttpResponseStatus.CREATED;
+            }
 
             if (response instanceof String) {
                 responseBody = (String) response;

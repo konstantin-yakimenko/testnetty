@@ -1,51 +1,43 @@
 package com.jakimenko.testnetty.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author konst
  */
-public class Country {
-    private Long countryId;
+public class Country extends Entity {
     private String title;
-    private List<City> cities;
 
-    public Country(Long countryId, String title, List<City> cities) {
-        this.countryId = countryId;
+    public Country(Integer id, String title) {
+        super(id);
         this.title = title;
-        this.cities = cities;
     }
 
-    public Long getCountryId() {
-        return countryId;
+    public Country() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setCountryId(Long countryId) {
-        this.countryId = countryId;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public List<City> getCities() {
-        return cities;
-    }
-
-    public void setCities(List<City> cities) {
-        this.cities = cities;
     }
 
     @Override
     public String toString() {
         return "Country{" +
-            "countryId=" + countryId +
-            ", title='" + title + '\'' +
-            ", cities=" + cities +
+            "title='" + title + '\'' +
+            ", id=" + id +
             '}';
     }
 }
