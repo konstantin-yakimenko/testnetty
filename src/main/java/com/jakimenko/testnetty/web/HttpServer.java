@@ -25,9 +25,9 @@ public class HttpServer implements CommandLineRunner {
     @Value("${server.port}")
     private Integer port;
 
-    private HttpChannelInitializer httpChannelInitializer;
-    private EpollEventLoopGroup bossGroup = new EpollEventLoopGroup(1);
-    private EpollEventLoopGroup workerGroup = new EpollEventLoopGroup(); // 12?
+    private final HttpChannelInitializer httpChannelInitializer;
+    private final EpollEventLoopGroup bossGroup = new EpollEventLoopGroup(1);
+    private final EpollEventLoopGroup workerGroup = new EpollEventLoopGroup(12); // 12 or default ?
 
     @Autowired
     public HttpServer(HttpChannelInitializer httpChannelInitializer) {
@@ -42,6 +42,11 @@ public class HttpServer implements CommandLineRunner {
                 .channel(EpollServerSocketChannel.class)
                 .childHandler(httpChannelInitializer)
                 .option(ChannelOption.SO_BACKLOG, 512)
+//                    .option(ChannelOption.SO_REUSEADDR, true)
+//                    .childOption(ChannelOption.SO_SNDBUF, 128 * 1024)
+//                    .childOption(ChannelOption.SO_RCVBUF, 128 * 1024)
+//                    .childOption(ChannelOption.TCP_NODELAY, true)
+//                    .childOption(ChannelOption.SO_REUSEADDR, true)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000);
 
