@@ -24,22 +24,26 @@ public class CountryDAO implements ICountryDAO {
         model.setId(id);
         map.put(id, model);
         return model;
+//        return new Country(1, "Russia");
     }
 
     @Override
     public Country update(Country model) {
         map.put(model.getId(), model);
         return model;
+//        return new Country(1, "Russia");
     }
 
     @Override
     public Country findById(int id) throws NotFoundException {
         return map.get(id);
+//        return new Country(1, "Russia");
     }
 
     @Override
     public int count() {
         return map.keySet().size();
+//        return 1;
     }
 
     @Override
@@ -47,5 +51,6 @@ public class CountryDAO implements ICountryDAO {
         Country country = map.get(id);
         map.remove(id);
         return country;
+//        return new Country(1, "Russia");
     }
 }

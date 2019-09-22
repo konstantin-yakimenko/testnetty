@@ -1,0 +1,36 @@
+176 update
+POST /api/city HTTP/1.1
+Host: hostname.com
+User-Agent: tank
+Accept: */*
+Content-Type: application/json
+Connection: Close
+Content-Length: 25
+
+{"id":1,"title":"Moscow"}
+130 get
+GET /api/city/1 HTTP/1.1
+Host: hostname.com
+User-Agent: tank
+Accept: */*
+Content-Type: application/json
+Connection: Close
+
+179 update
+POST /api/country HTTP/1.1
+Host: hostname.com
+User-Agent: tank
+Accept: */*
+Content-Type: application/json
+Connection: Close
+Content-Length: 25
+
+{"id":1,"title":"Russia"}
+133 get
+GET /api/country/1 HTTP/1.1
+Host: hostname.com
+User-Agent: tank
+Accept: */*
+Content-Type: application/json
+Connection: Close
+

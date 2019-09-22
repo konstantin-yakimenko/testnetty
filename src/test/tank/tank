@@ -1,0 +1,3 @@
+yandex-tank -c load.yaml ammo.txt
+https://yandextank.readthedocs.io/en/latest/ammo_generators.html
+cat data | python make_ammo.py > ammo.txt

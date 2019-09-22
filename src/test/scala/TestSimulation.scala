@@ -50,8 +50,8 @@ class TestSimulation extends Simulation {
 
   setUp(
     scn.inject(
-      constantConcurrentUsers(10) during (10 seconds),
-      rampConcurrentUsers(10) to (100) during (60 seconds)
+      rampConcurrentUsers(10) to (1000) during (60 seconds),
+      constantConcurrentUsers(1000) during (60 seconds)
     )
       .protocols(httpProtocol)
   )

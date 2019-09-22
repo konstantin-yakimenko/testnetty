@@ -50,7 +50,7 @@ public class PathHandlerProvider {
 
     public IHttpHandler getHandler(FullHttpRequest request) {
         String uri = request.uri();
-        logger.info("Request: {}", uri);
+//        logger.info("Request: {}", uri);
         if (uri.contains("?")) {
             uri = uri.substring(0, uri.indexOf("?"));
         }

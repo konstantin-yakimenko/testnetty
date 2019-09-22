@@ -1,0 +1,5 @@
+POST||/api/city||update||{"id":1,"title":"Moscow"}
+GET||/api/city/1||get|| 
+POST||/api/country||update||{"id":1,"title":"Russia"}
+GET||/api/country/1||get|| 
+

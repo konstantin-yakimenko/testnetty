@@ -24,22 +24,26 @@ public class CityDAO implements ICityDAO {
         model.setId(id);
         map.put(id, model);
         return model;
+//        return new City(1, "Moscow");
     }
 
     @Override
     public City update(City model) {
         map.put(model.getId(), model);
         return model;
+//        return new City(1, "Moscow");
     }
 
     @Override
     public City findById(int id) throws NotFoundException {
         return map.get(id);
+//        return new City(1, "Moscow");
     }
 
     @Override
     public int count() {
         return map.keySet().size();
+//        return 1;
     }
 
     @Override
@@ -47,5 +51,6 @@ public class CityDAO implements ICityDAO {
         City city = map.get(id);
         map.remove(id);
         return city;
+//        return new City(1, "Moscow");
     }
 }
