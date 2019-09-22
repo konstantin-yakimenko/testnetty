@@ -34,9 +34,7 @@ public class CityAddHandler extends AddHandler<City> {
             int hash = entry.getKey().hashCode();
             String value = entry.getValue();
 
-            if ("id".hashCode() == hash) {
-                city.setId(Integer.parseInt(value));
-            } if ("title".hashCode() == hash) {
+            if ("title".hashCode() == hash) {
                 city.setTitle(value);
             }
         }

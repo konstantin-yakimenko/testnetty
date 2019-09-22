@@ -16,4 +16,6 @@ public interface IDao<T extends Entity> {
 
     int count();
 
+    T delete(int id);
+
 }

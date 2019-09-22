@@ -19,7 +19,6 @@ public abstract class AddHandler<T extends Entity> extends EntityHandler<T> {
     public Object handleRequest(FullHttpRequest request) throws Exception {
         Map<String, String> json = readJson(request);
         T model = parseJson(json);
-        service.add(model);
-        return "{}";
+        return service.add(model);
     }
 }

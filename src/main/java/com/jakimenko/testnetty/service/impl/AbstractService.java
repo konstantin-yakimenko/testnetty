@@ -28,10 +28,9 @@ public abstract class AbstractService<T extends Entity, R extends IDao<T>> imple
 
     @Override
     public T add(T model) {
-        if (dao.findById(model.getId()) != null) {
-            throw new BadRequestException();
-        }
-
+//        if (dao.findById(model.getId()) != null) {
+//            throw new BadRequestException();
+//        }
         return dao.add(model);
     }
 
@@ -40,4 +39,8 @@ public abstract class AbstractService<T extends Entity, R extends IDao<T>> imple
         return dao.count();
     }
 
+    @Override
+    public T delete(int id) {
+        return dao.delete(id);
+    }
 }

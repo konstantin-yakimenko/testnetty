@@ -2,9 +2,11 @@ package com.jakimenko.testnetty.web;
 
 import com.jakimenko.testnetty.handler.IHttpHandler;
 import com.jakimenko.testnetty.handler.city.CityAddHandler;
+import com.jakimenko.testnetty.handler.city.CityDeleteHandler;
 import com.jakimenko.testnetty.handler.city.CityGetHandler;
 import com.jakimenko.testnetty.handler.city.CityUpdateHandler;
 import com.jakimenko.testnetty.handler.country.CountryAddHandler;
+import com.jakimenko.testnetty.handler.country.CountryDeleteHandler;
 import com.jakimenko.testnetty.handler.country.CountryGetHandler;
 import com.jakimenko.testnetty.handler.country.CountryUpdateHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -28,19 +30,23 @@ public class PathHandlerProvider {
         this.CITY_GET_HANDLER = context.getBean(CityGetHandler.class);
         this.CITY_ADD_HANDLER = context.getBean(CityAddHandler.class);
         this.CITY_UPDATE_HANDLER = context.getBean(CityUpdateHandler.class);
+        this.CITY_DELETE_HANDLER = context.getBean(CityDeleteHandler.class);
 
         this.COUNTRY_GET_HANDLER = context.getBean(CountryGetHandler.class);
         this.COUNTRY_ADD_HANDLER = context.getBean(CountryAddHandler.class);
         this.COUNTRY_UPDATE_HANDLER = context.getBean(CountryUpdateHandler.class);
+        this.COUNTRY_DELETE_HANDLER = context.getBean(CountryDeleteHandler.class);
     }
 
     private final CityGetHandler CITY_GET_HANDLER;
     private final CityAddHandler CITY_ADD_HANDLER;
     private final CityUpdateHandler CITY_UPDATE_HANDLER;
+    private final CityDeleteHandler CITY_DELETE_HANDLER;
 
     private final CountryGetHandler COUNTRY_GET_HANDLER;
     private final CountryAddHandler COUNTRY_ADD_HANDLER;
     private final CountryUpdateHandler COUNTRY_UPDATE_HANDLER;
+    private final CountryDeleteHandler COUNTRY_DELETE_HANDLER;
 
     public IHttpHandler getHandler(FullHttpRequest request) {
         String uri = request.uri();
@@ -71,6 +77,14 @@ public class PathHandlerProvider {
 
             if (uri.startsWith("/api/country")) {
                 return COUNTRY_GET_HANDLER;
+            }
+        } else if (method.equals(HttpMethod.DELETE)) {
+            if (uri.startsWith("/api/city")) {
+                return CITY_DELETE_HANDLER;
+            }
+
+            if (uri.startsWith("/api/country")) {
+                return COUNTRY_DELETE_HANDLER;
             }
         }
         logger.error("Not found handler for request: {}", uri);

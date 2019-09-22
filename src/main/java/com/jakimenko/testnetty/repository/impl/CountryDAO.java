@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author konst
@@ -15,10 +16,13 @@ import java.util.concurrent.ConcurrentMap;
 public class CountryDAO implements ICountryDAO {
 
     private static final ConcurrentMap<Integer, Country> map = new ConcurrentHashMap<>();
+    private static final AtomicInteger idGenerator = new AtomicInteger();
 
     @Override
     public Country add(Country model) {
-        map.put(model.getId(), model);
+        int id = idGenerator.incrementAndGet();
+        model.setId(id);
+        map.put(id, model);
         return model;
     }
 
@@ -36,5 +40,12 @@ public class CountryDAO implements ICountryDAO {
     @Override
     public int count() {
         return map.keySet().size();
+    }
+
+    @Override
+    public Country delete(int id) {
+        Country country = map.get(id);
+        map.remove(id);
+        return country;
     }
 }

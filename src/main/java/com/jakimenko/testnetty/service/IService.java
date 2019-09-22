@@ -15,4 +15,6 @@ public interface IService<T extends Entity> {
 
     T update(T model);
 
+    T delete(int id);
+
 }
