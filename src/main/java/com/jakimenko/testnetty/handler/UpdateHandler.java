@@ -23,7 +23,6 @@ public abstract class UpdateHandler<T extends Entity> extends EntityHandler<T> {
         T model = parseJson(json);
         model.setId(id);
 
-        service.update(model);
-        return "{}";
+        return service.update(model);
     }
 }
