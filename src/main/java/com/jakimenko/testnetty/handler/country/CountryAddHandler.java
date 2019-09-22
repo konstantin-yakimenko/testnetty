@@ -39,7 +39,6 @@ public class CountryAddHandler extends AddHandler<Country> {
             } if ("title".hashCode() == hash) {
                 city.setTitle(value);
             }
-            // todo List<City> cities
         }
         return city;
     }
